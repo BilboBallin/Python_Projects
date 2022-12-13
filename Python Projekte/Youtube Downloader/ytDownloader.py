@@ -14,12 +14,11 @@ yt = YouTube(link)
 yd = yt.streams.get_highest_resolution() #get highest resolution lol
 
 #save (safe) and sound
-yd.download("/home/proman/Desktop/Python Projekte/Youtube Downloader/ytdownloads") #note: change direction for own path
+saved_video = yd.download() #note: output saved to the current working directory
 
 #convert mp4 to mp3
-video = VideoFileClip(os.path.join("/home/proman/Desktop/Python Projekte/Youtube Downloader/ytdownloads/", f"{yt.title}.mp4")) #note: change direction for own path
-video.audio.write_audiofile(os.path.join("/home/proman/Desktop/Python Projekte/Youtube Downloader/ytdownloads/", f"{yt.title}.mp3")) #note: change direction for own path
+video = VideoFileClip(saved_video) 
+video.audio.write_audiofile(saved_video.replace(".mp4", ".mp3")) 
 
 # to delete the .mp4 video file:
-mp4_path = f"/home/proman/Desktop/Python Projekte/Youtube Downloader/ytdownloads/{yt.title}.mp4" #note: change direction for own path
-os.remove(mp4_path)
+os.remove(saved_video)
